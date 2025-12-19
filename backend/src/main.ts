@@ -3,6 +3,8 @@ import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  const port = process.env.PORT||3001;
+  
 
   // 💡 CORS (Cross-Origin Resource Sharing) の設定を追加
   app.enableCors({
@@ -10,8 +12,10 @@ async function bootstrap() {
     origin: 'http://localhost:3000', 
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true, // クッキーや認証ヘッダーを許可する場合
+    allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept',
   });
 
-  await app.listen(3001); 
+  console.log('listening on port${port}')
+  await app.listen(port,'0.0.0.0'); 
 }
 bootstrap();

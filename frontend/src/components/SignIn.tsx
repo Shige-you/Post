@@ -43,9 +43,9 @@ export default function SignIn() {
       </SSignInRow>
       <SSignInRow>
         <SSignInLabel>
-        {/* <label htmlFor="password">Password</label> */}
-        <input id="password" value={password} type="password" onChange={(evt) => setPassword(evt.target.value)} />
+        <label htmlFor="password">Password</label>
         </SSignInLabel>
+        <input id="password" value={password} type="password" onChange={(evt) => setPassword(evt.target.value)} />
       </SSignInRow>
       <SSignInRow>
       <SLoginButton type="button" onClick={onSignInClick}>Login
@@ -57,7 +57,7 @@ export default function SignIn() {
 
 const SSignInFrame = styled.div`
   background-color: #f8f8f8;
-  margin: 80px;
+  margin: 80px auto;
   padding-top: 8px;
   padding-bottom: 8px;
   border-radius: 8px;
@@ -90,4 +90,8 @@ const SLoginButton = styled.button`
   color: #f0f0f0;
   padding: 4px 16px;
   border-radius: 8px;
+  cursor:pointer;
+  text-align:center;
+  display:block;
+  margin: 0 auto;
 `;
