@@ -1,6 +1,5 @@
 import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { PostService } from './post.service';
-import { SPLITTER } from 'styled-components/dist/constants';
 
 @Controller('post')
 export class PostController {
