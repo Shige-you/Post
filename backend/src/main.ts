@@ -7,13 +7,15 @@ async function bootstrap() {
   
 
   // 💡 CORS (Cross-Origin Resource Sharing) の設定を追加
-  app.enableCors({
-    // 重要な設定: React開発サーバーのオリジンを許可する
-    origin: 'http://localhost:3000', 
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true, // クッキーや認証ヘッダーを許可する場合
-    allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept',
-  });
+  app.enableCors(
+  //   {
+  //   // 重要な設定: React開発サーバーのオリジンを許可する
+  //   origin: ['http://localhost:3000','https://post-z5fj.onrender.com '],
+  //   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  //   credentials: true, // クッキーや認証ヘッダーを許可する場合
+  //   allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept',
+  // }
+);
 
   console.log('listening on port${port}')
   await app.listen(port,'0.0.0.0'); 

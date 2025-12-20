@@ -26,7 +26,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config'
         database: configService.get<string>('DB_NAME'),
         autoLoadEntities: true,
         // 開発中なら true でも OK ですが、安全のため意識しておきましょう
-        synchronize: true, 
+        synchronize: false, 
         ssl: { rejectUnauthorized: false },
       }),
     }),

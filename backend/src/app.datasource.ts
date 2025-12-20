@@ -10,7 +10,9 @@ const AppDataSource = new DataSource({
     username: process.env.DB_USER, 
     password: process.env.DB_PASS, 
     database: process.env.DB_NAME, 
-    
+    ssl: {
+    rejectUnauthorized: false,
+  },
     // 2. その他の設定
     synchronize: false, // 開発中はtrueでも良いが、本番では必ずfalse
     logging: true, // SQLログの表示設定
