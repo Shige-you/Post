@@ -11,7 +11,12 @@ export class UserController {
     @Body('email') email: string,
     @Body('password') password: string,
   ) {
-    this.userService.createUser(name, email, password);
+    return this.userService.createUser(name, email, password);
+  }
+
+  @Get()
+  async findAll() {
+    return await this.userService.findAll();
   }
 
   @Get(':id')

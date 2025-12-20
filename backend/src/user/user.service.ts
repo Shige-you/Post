@@ -18,6 +18,10 @@ export class UserService {
         private authRepository:Repository<Auth>,
     ){}
 
+    async findAll(): Promise<User[]> {
+    return await this.userRepository.find();
+  }
+
     async getUser(token: string, id: number) {
 
     // ログイン済みかチェック
