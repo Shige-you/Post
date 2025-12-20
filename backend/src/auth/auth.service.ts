@@ -24,7 +24,7 @@ export class AuthService {
   }
 
   // 2. パスワードをハッシュ化 (DBにはハッシュ化した値が入っている前提)
-  const hash = crypto.createHash('md5').update(password).digest('hex');
+  const hash = crypto.createHash('sha256').update(password).digest('hex');
 
   // 3. name と hash でユーザーを検索
   const user = await this.userRepository.findOne({
