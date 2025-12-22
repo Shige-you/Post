@@ -51,7 +51,7 @@ export class PostService {
 
     const records = await this.microPostsRepository
       .createQueryBuilder('micro_post')
-      .leftJoin('user','u','u.id =micro_post.user_id')
+      .leftJoin('users','u','u.id =micro_post.user_id')
       .select([
         'micro_post.id as id',
         'u.name as user_name',
