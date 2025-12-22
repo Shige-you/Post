@@ -1,10 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { PostService } from './post.service';
-import { getRepositoryToken } from '@nestjs/typeorm'; // 👈 追加
-import { MicroPost } from '../entities/microposts.entity'; // 👈 追加 (パスは必要に応じて調整)
-import { Auth } from '../entities/auth.entity'; // 👈 追加 (パスは必要に応じて調整)
+import { getRepositoryToken } from '@nestjs/typeorm';
+import { MicroPost } from '../entities/microposts.entity'; 
+import { Auth } from '../entities/auth.entity'; 
 
-// 💡 共通のモックリポジトリオブジェクトを定義
+// 共通のモックリポジトリオブジェクトを定義
 const mockRepository = {
     // PostService のメソッドが利用するであろう TypeORM メソッドをモック化
     findOne: jest.fn(),

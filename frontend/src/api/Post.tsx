@@ -1,5 +1,5 @@
 import axios from "axios"
-const SERVER_ADDRESS = "http://localhost:3001"; 
+const SERVER_ADDRESS = process.env.REACT_APP_API_URL; 
 
 // 1. 投稿一覧を取得する
 export const getList = async (token: string) => {
