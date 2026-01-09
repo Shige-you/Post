@@ -6,10 +6,9 @@ type UserInfo = {
   user_id: number;
   email:string;
   token: string;
-  name?:string;
+  name:string;
 };
 
-// UserContextの作成
 // UserContextには ProviderとConsumerの二つのフィールドが含まれる
 export const UserContext = createContext(
   {} as {

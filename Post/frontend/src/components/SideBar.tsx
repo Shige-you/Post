@@ -1,14 +1,28 @@
-import { useState, useContext } from "react";
+import { useState, useContext,useEffect } from "react";
 import { UserContext } from "../providers/UserProvider.tsx";
 import { PostListContext, PostType } from "../providers/PostListProvider.tsx";
 import { post, getList } from "../api/Post.tsx";
 import styled from "styled-components";
+import {getUser} from "../api/User.tsx"
 
 export default function SideBar() {
   const [msg, setMsg] = useState("");
   const { userInfo } = useContext(UserContext);
-  
-    const { setPostList, setCurrentPage } = useContext(PostListContext);
+  const [userName,setUserName] =useState("");
+  const { setPostList, setCurrentPage } = useContext(PostListContext);
+
+  useEffect(() => {
+    const myGetUser = async () => {
+      if (!userInfo.token) return;
+      try {
+        const user = await getUser(userInfo.user_id, userInfo.token);
+        setUserName(user.name);
+      } catch (error) {
+        console.error("ユーザー情報の取得に失敗しました", error);
+      }
+    };
+    myGetUser();
+  }, [userInfo.user_id, userInfo.token]);
 
   const refreshList = async () => {
     if (!userInfo || !userInfo.token) return;
@@ -30,7 +44,6 @@ export default function SideBar() {
       }
       setPostList(newPostList);
 
-      // ここでページ番号を「1」にリセット
       setCurrentPage(1); 
 
     } catch (error) {
@@ -46,10 +59,8 @@ export default function SideBar() {
     const { user_id, token } = userInfo;
 
     try {
-      // 1. サーバーへ投稿を送信
       await post(String(user_id), token, msg);
       
-      // 2. 投稿が成功したら、すぐに最新リスト（1ページ目）を取得しに行く
       await refreshList();
       setMsg(""); // 入力欄を空にする
     } catch (error) {
@@ -60,7 +71,9 @@ export default function SideBar() {
 
   return (
     <SSideBar>
-      <SSideBarRow>{userInfo.user_id||"hoge"}{userInfo.email || "hoge"}</SSideBarRow>
+      <SSideBarRow>
+        {userName}
+      </SSideBarRow>
       <SSideBarRow>
         <STextarea
           rows={4}
