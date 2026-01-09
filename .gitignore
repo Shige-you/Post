@@ -1,5 +1,0 @@
-/node_modules
-.env
-/dist
-# OS Specific
-.DS_Store
